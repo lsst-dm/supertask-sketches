@@ -1,3 +1,13 @@
+from __future__ import print_function, division, absolute_import
+
+from future.utils import with_metaclass
+
+__all__ = ("Field", "RegionField", "IntField", "StrField", "DateTimeField",
+           "PythonTypeField", "ForeignKey", "ReverseForeignKey", "Alias",
+           "UnitMeta", "Unit", "SpatialUnit",
+           "sqlCreateTable")
+
+
 class Field(object):
 
     def __init__(self, optional=False):
@@ -90,7 +100,7 @@ class UnitMeta(type):
                 v.attach(self, name=k)
 
 
-class Unit(object):
+class Unit(with_metaclass(UnitMeta, object)):
 
     __metaclass__ = UnitMeta
 
